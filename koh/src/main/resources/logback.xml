@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{HH:mm:ss} [%thread] %highlight(%level)  //log로 뜨는 것의 양식 지정
+                %magenta(%logger{36}) %line - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+//하위로거는 무조건 상위로거를 상속 받는다.
+    <root level="info">   //level="error"로 바꾸면 잡다한 것 안나오고 찾고자하는것만 나옴
+        //밑에 이름을 지정하지 않은 모든것들 상속
+        <appender-ref ref="STDOUT"/>
+    </root>
+//logger이름은 자신의 클래스명으로!
+    <logger name="koh" level="debug"/>   //event
+    //<logger name="kr.mjc.jacob" level="debug"/> //level="warn"할 시 로그레벨이 더 낮은게 없으므로 아무log도 안보임
+    //위에 로거가 standardoutput 형태이므로 상속받아 이 로거도 stdoutput형태가 됨.
+    //<logger name="kr.mjc.rachel" level="debug"/>
+    //<logger name="org.mariadb.jdbc.client.impl.StandardClient" level="info"/>
+</configuration>
